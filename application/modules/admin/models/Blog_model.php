@@ -31,7 +31,8 @@ class Blog_model extends CI_Model
         return $this->db->count_all_results('blog_posts');
     }
 
-    public function getPosts($lang = null, $limit, $page, $search = null, $month = null)
+    // ✅ FIXED PARAMETER ORDER FOR PHP 8+
+    public function getPosts($limit, $page, $lang = null, $search = null, $month = null)
     {
         if ($search !== null) {
             $search = $this->db->escape_like_str($search);
